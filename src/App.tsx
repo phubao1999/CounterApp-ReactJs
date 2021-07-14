@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
 import Counters from './components/counters';
+import HandleStore from './components/handleStore';
 import Navbar from './components/navbar';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           onIncrement={handleIncrement}
           onReset={handleResetData}
           onRevert={handleRevertData} />
+          <HandleStore />
       </main>
     </>
   );
