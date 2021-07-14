@@ -1,6 +1,8 @@
+import { constants } from "../constants/constant";
+
 const loggedReducer = (state = false, action: any) => {
     switch (action.type) {
-        case "SIGN_IN":
+        case constants.reducerAction.SIGN_IN:
             return !state;
         default:
             return state;

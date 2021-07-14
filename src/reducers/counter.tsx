@@ -1,8 +1,10 @@
+import { constants } from "../constants/constant";
+
 const counterReducer = (state = 0, action: any) => {
     switch (action.type) {
-        case "INCREMENT":
+        case constants.reducerAction.INCREMENT:
             return state + action.payload;
-        case "DECREMENT":
+        case constants.reducerAction.DECREMENT:
             return state - action.payload;
         default:
             return state;
