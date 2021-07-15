@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import App from './App';
 import './index.css';
-import allReducers from './reducers';
+import allReducers from './reducers'; // List of all reducer
 import reportWebVitals from './reportWebVitals';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension'; // For redux dev tool chrome
 
 
 const store = createStore(

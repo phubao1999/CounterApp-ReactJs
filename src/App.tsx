@@ -1,61 +1,91 @@
-import { useEffect, useState } from 'react';
-import './App.scss';
-import Counters from './components/counters';
-import HandleStore from './components/handleStore';
-import Navbar from './components/navbar';
+// import { useEffect, useState } from 'react';
+// import './App.scss';
+// import Counters from './components/counters';
+// import HandleStore from './components/handleStore';
+// import Navbar from './components/navbar';
 
-function App() {
-  const dataCounter = [
-    { id: 1, value: 3 },
-    { id: 2, value: 0 },
-    { id: 3, value: 0 },
-    { id: 4, value: 0 }
-  ];
-  const [counters, setCounters] = useState(dataCounter);
+import { Component } from "react";
+import Counters from "./components/counters";
+import HandleStore from "./components/handleStore";
+import Navbar from "./components/navbar";
 
-  const handleDelete = (id: number) => {
-    const newData = counters.filter(item => item.id !== id);
-    setCounters(newData);
+// function App() {
+const dataCounter = [
+  { id: 1, value: 3 },
+  { id: 2, value: 0 },
+  { id: 3, value: 0 },
+  { id: 4, value: 0 }
+];
+
+interface counter {
+  id: number,
+  value: number
+}
+
+interface appState {
+  counters: counter[]
+}
+class App extends Component<any, appState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      counters: dataCounter
+    }
   }
 
-  const handleIncrement = (counter: any) => {
-    const cloneCounters = [...counters];
+  componentDidMount() {
+    console.log("NgOnInit");
+  }
+
+  handleDelete = (id: number) => {
+    const newData = this.state.counters.filter(item => item.id !== id);
+    this.setState({
+      counters: newData
+    })
+  }
+
+  handleIncrement = (counter: any) => {
+    const cloneCounters = [...this.state.counters];
     const index = cloneCounters.indexOf(counter);
     cloneCounters[index] = { ...counter };
     cloneCounters[index].value++;
-    setCounters(cloneCounters);
+    this.setState({
+      counters: cloneCounters
+    })
   }
 
-  const handleResetData = () => {
-    const resetData = counters.map(item => {
+  handleResetData = () => {
+    const resetData = this.state.counters.map(item => {
       item.value = 0;
       return item;
     })
-    setCounters(resetData);
+    this.setState({
+      counters: resetData
+    })
   }
 
-  const handleRevertData = () => {
-    setCounters(dataCounter);
+  handleRevertData = () => {
+    this.setState({
+      counters: dataCounter
+    });
   }
 
-  useEffect(() => {
-    console.log("ngOnInit()");
-  }, []);
-
-  return (
-    <>
-      <Navbar totalCounters={counters.filter(item => item.value > 0).length} />
-      <main className="container">
-        <Counters
-          counters={counters}
-          onDelete={handleDelete}
-          onIncrement={handleIncrement}
-          onReset={handleResetData}
-          onRevert={handleRevertData} />
+  render() {
+    return (
+      <>
+        <Navbar totalCounters={this.state.counters.filter(item => item.value > 0).length} />
+        <main className="container">
+          <Counters
+            counters={this.state.counters}
+            onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
+            onReset={this.handleResetData}
+            onRevert={this.handleRevertData} />
           <HandleStore />
-      </main>
-    </>
-  );
+        </main>
+      </>
+    )
+  }
 }
 
 export default App;
