@@ -18,7 +18,7 @@ interface counterState {
     counters: counter[]
 }
 
-class CounterTemplate extends Component<any, counterState> {
+class pageCounter extends Component<any, counterState> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -80,4 +80,4 @@ class CounterTemplate extends Component<any, counterState> {
     }
 }
 
-export default CounterTemplate;
+export default pageCounter;

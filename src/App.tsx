@@ -1,7 +1,7 @@
 import { Component } from "react";
-import Navbar from "./components/navbar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import CounterTemplate from "./components/pages/counterTemplate";
+import Navbar from "./components/navbar";
+import pageCounter from "./components/pages/pageCounter";
 import PageNotFound from "./components/pages/pageNotFound";
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
         <BrowserRouter>
           <Navbar />
           <Switch>
-            <Route path="/" component={CounterTemplate} exact />
+            <Route path="/" component={pageCounter} exact />
             <Route component={PageNotFound} />
           </Switch>
         </BrowserRouter>
