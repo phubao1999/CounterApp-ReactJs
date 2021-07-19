@@ -1,18 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
+import { Component } from "react";
 import { decrement, increment } from "../actions";
+class HandleStore extends Component<any> {
 
-export default function HandleStore() {
-    const counterRedux = useSelector((state: any) => state.counter);
-    const isLogged = useSelector((state: any) => state.logged);
-    const dispatch = useDispatch();
+    render() {
+        const {isLogged, counterRedux, dispatch} = this.props;
 
-    return (
-        <>
-            <br />
-            <h1>Counter In Redux Store Is: {counterRedux}</h1>
-            <button className="btn btn-primary btn-sm m-2" onClick={() => dispatch(increment(1))}>+</button>
-            <button className="btn btn-secondary btn-sm m-2" onClick={() => dispatch(decrement(1))}>-</button>
-            {isLogged ? <h3>Valuable Information I Shouldn't see</h3> : ''}
-        </>
-    )
+        return (
+            <>
+                <br />
+                <h1>Counter In Redux Store Is: {counterRedux}</h1>
+                <button className="btn btn-primary btn-sm m-2" onClick={() => dispatch(increment(1))}>+</button>
+                <button className="btn btn-secondary btn-sm m-2" onClick={() => dispatch(decrement(1))}>-</button>
+                {isLogged ? <h3>Valuable Information I Shouldn't see</h3> : ''}
+            </>
+        )
+    }
 }
+
+export default HandleStore;

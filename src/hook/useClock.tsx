@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useClock() {
+const useClock = () => {
     const [time, setTime] = useState("");
     const [ampm, setampm] = useState("");
 
@@ -42,3 +42,5 @@ export default function useClock() {
 
     return [time, ampm];
 }
+
+export default useClock;

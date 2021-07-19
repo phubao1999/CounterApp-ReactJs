@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Counters from "../counters";
-import HandleStore from "../handleStore";
+import HandleStoreHOC from "../HOC/handleStoreHOC";
 
 const dataCounter = [
     { id: 1, value: 3 },
@@ -65,7 +65,7 @@ class pageCounter extends Component<any, counterState> {
 
     render() {
         return (
-            <>
+            <div>
                 <main className="container">
                     <Counters
                         counters={this.state.counters}
@@ -73,9 +73,9 @@ class pageCounter extends Component<any, counterState> {
                         onIncrement={this.handleIncrement}
                         onReset={this.handleResetData}
                         onRevert={this.handleRevertData} />
-                    <HandleStore />
+                    <HandleStoreHOC />
                 </main>
-            </>
+            </div>
         );
     }
 }
