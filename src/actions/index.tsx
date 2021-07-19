@@ -13,3 +13,10 @@ export const decrement = (number: number) => {
         payload: number
     };
 }
+
+export const updateNavbarCount = (number: number) => {
+    return {
+        type: constants.reducerAction.COUNTING_NAVBAR,
+        counter: number
+    };
+}

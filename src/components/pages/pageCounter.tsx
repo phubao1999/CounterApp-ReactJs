@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { updateNavbarCount } from "../../actions";
 import Counters from "../counters";
 import HandleStoreHOC from "../HOC/handleStoreHOC";
 
@@ -18,16 +19,31 @@ interface counterState {
     counters: counter[]
 }
 
-class pageCounter extends Component<any, counterState> {
-    constructor(props: any) {
+interface counterProps {
+    dispatch: any
+}
+
+class PageCounter extends Component<counterProps, counterState> {
+    constructor(props: counterProps) {
         super(props);
         this.state = {
             counters: dataCounter
         }
+        this.props.dispatch(updateNavbarCount(this.totalProduct));
+    }
+
+    get totalProduct() {
+        return this.state.counters.filter(item => item.value > 0).length;
+    }
+
+    updateStateNavbarCountProduct() {
+        setTimeout(() => {
+            this.props.dispatch(updateNavbarCount(this.totalProduct));
+        })
     }
 
     componentDidMount() {
-        console.log("NgOnInit");
+        this.updateStateNavbarCountProduct();
     }
 
     handleDelete = (id: number) => {
@@ -35,6 +51,7 @@ class pageCounter extends Component<any, counterState> {
         this.setState({
             counters: newData
         })
+        this.updateStateNavbarCountProduct();
     }
 
     handleIncrement = (counter: any) => {
@@ -45,6 +62,7 @@ class pageCounter extends Component<any, counterState> {
         this.setState({
             counters: cloneCounters
         })
+        this.updateStateNavbarCountProduct();
     }
 
     handleResetData = () => {
@@ -55,12 +73,14 @@ class pageCounter extends Component<any, counterState> {
         this.setState({
             counters: resetData
         })
+        this.updateStateNavbarCountProduct();
     }
 
     handleRevertData = () => {
         this.setState({
             counters: dataCounter
         });
+        this.updateStateNavbarCountProduct();
     }
 
     render() {
@@ -80,4 +100,4 @@ class pageCounter extends Component<any, counterState> {
     }
 }
 
-export default pageCounter;
+export default PageCounter;

@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Navbar from "./components/navbar";
-import pageCounter from "./components/pages/pageCounter";
+import NavbarHOC from "./components/HOC/navbarHOC";
+import PageCounterHOC from "./components/HOC/pageCounterHOC";
 import PageNotFound from "./components/pages/pageNotFound";
 
 class App extends Component {
@@ -9,9 +9,9 @@ class App extends Component {
     return (
       <>
         <BrowserRouter>
-          <Navbar />
+          <NavbarHOC />
           <Switch>
-            <Route path="/" component={pageCounter} exact />
+            <Route path="/" component={PageCounterHOC} exact />
             <Route component={PageNotFound} />
           </Switch>
         </BrowserRouter>
