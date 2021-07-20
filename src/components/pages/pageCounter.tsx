@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { connect } from "react-redux";
 import { updateNavbarCount } from "../../actions";
 import Counters from "../counters";
 import HandleStore from "../handleStore";
@@ -20,7 +21,7 @@ interface counterState {
 }
 
 interface counterProps {
-    dispatch: any
+    updateNavbarCount: any
 }
 
 class PageCounter extends Component<counterProps, counterState> {
@@ -29,7 +30,7 @@ class PageCounter extends Component<counterProps, counterState> {
         this.state = {
             counters: dataCounter
         }
-        this.props.dispatch(updateNavbarCount(this.totalProduct));
+        this.props.updateNavbarCount(this.totalProduct);
     }
 
     get totalProduct() {
@@ -38,7 +39,7 @@ class PageCounter extends Component<counterProps, counterState> {
 
     updateStateNavbarCountProduct() {
         setTimeout(() => {
-            this.props.dispatch(updateNavbarCount(this.totalProduct));
+            this.props.updateNavbarCount(this.totalProduct);
         })
     }
 
@@ -100,4 +101,10 @@ class PageCounter extends Component<counterProps, counterState> {
     }
 }
 
-export default PageCounter;
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        updateNavbarCount: (num: number) => dispatch(updateNavbarCount(num))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(PageCounter);
