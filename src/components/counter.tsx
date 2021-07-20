@@ -1,12 +1,13 @@
 import { Component } from "react";
-interface counterProps {
+export interface counterProps {
     onIncrement: Function,
     onDelete: Function,
     counter: {
+        id: number,
         value: number
     }
 }
-class Counter extends Component<counterProps> {
+export default class Counter extends Component<counterProps> {
     constructor(props: counterProps) {
         super(props);
         this.getClassesBadge = this.getClassesBadge.bind(this);
@@ -27,7 +28,7 @@ class Counter extends Component<counterProps> {
 
     render() {
         return (
-            <div>
+            <div data-testid={this.props.counter.id}>
                 <span className={this.getClassesBadge()}>{this.formatValue()}</span>
                 <button className="btn btn-secondary btn-sm" onClick={() => { this.props.onIncrement() }}>Increment</button>
                 <button className="btn btn-danger btn-sm ml-2" onClick={() => { this.props.onDelete() }}>Delete</button>
@@ -35,5 +36,3 @@ class Counter extends Component<counterProps> {
         )
     }
 }
-
-export default Counter;

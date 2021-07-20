@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Counter /> matches snapshot 1`] = `
+<div
+  data-testid={1}
+>
+  <span
+    className="badge m-2  badge-primary"
+  >
+    3
+  </span>
+  <button
+    className="btn btn-secondary btn-sm"
+    onClick={[Function]}
+  >
+    Increment
+  </button>
+  <button
+    className="btn btn-danger btn-sm ml-2"
+    onClick={[Function]}
+  >
+    Delete
+  </button>
+</div>
+`;
