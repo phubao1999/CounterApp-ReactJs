@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { updateNavbarCount } from "../../actions";
@@ -45,6 +46,14 @@ class PageCounter extends Component<counterProps, counterState> {
 
     componentDidMount() {
         this.updateStateNavbarCountProduct();
+        axios.get('https://jsonplaceholder.typicode.com/posts', {
+            params: {
+                _page: 1,
+                _limit: 10
+            }
+        })
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
 
     handleDelete = (id: number) => {
