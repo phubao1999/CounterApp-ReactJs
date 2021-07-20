@@ -7,7 +7,7 @@ afterEach(() => {
 })
 
 describe("<Counter />", () => {
-    test("Should render Counter Component", async () => {
+    test("Should render Counter Component", () => {
         const onIncrement = () => null;
         const onDelete = () => null;
         const counter = {
@@ -18,7 +18,6 @@ describe("<Counter />", () => {
         const counterEl = screen.getByTestId('1');
         expect(counterEl).toBeInTheDocument();
         expect(counterEl).toHaveTextContent('Increment');
-        expect(counterEl).not.toContainHTML('<div>');
     });
 
     test("matches snapshot", () => {

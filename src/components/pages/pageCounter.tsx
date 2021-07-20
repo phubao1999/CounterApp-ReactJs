@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { updateNavbarCount } from "../../actions";
 import Counters from "../counters";
-import HandleStoreHOC from "../HOC/handleStoreHOC";
+import HandleStore from "../handleStore";
 
 const dataCounter = [
     { id: 1, value: 3 },
@@ -93,7 +93,7 @@ class PageCounter extends Component<counterProps, counterState> {
                         onIncrement={this.handleIncrement}
                         onReset={this.handleResetData}
                         onRevert={this.handleRevertData} />
-                    <HandleStoreHOC />
+                    <HandleStore />
                 </main>
             </div>
         );
