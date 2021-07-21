@@ -1,9 +1,9 @@
 import axios from "axios";
 import { Component } from "react";
 import { connect } from "react-redux";
-import { updateNavbarCount } from "../../actions";
-import Counters from "../counters";
-import HandleStore from "../handleStore";
+import { updateNavbarCount } from "../../../actions";
+import Counters from "../../Counters/counters";
+import HandleStore from "../../HandleStore/handleStore";
 
 const dataCounter = [
     { id: 1, value: 3 },

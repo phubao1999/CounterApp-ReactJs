@@ -1,6 +1,6 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import renderer from 'react-test-renderer';
-import Counter from "../components/counter";
+import Counter from "./counter";
 
 afterEach(() => {
     cleanup();

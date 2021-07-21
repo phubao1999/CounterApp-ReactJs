@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import '../../scss/pageNotFound.scss';
+import './pageNotFound.scss';
 
 export default function PageNotFound() {
     const navigate = useHistory();

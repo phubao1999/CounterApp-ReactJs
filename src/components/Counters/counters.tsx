@@ -1,7 +1,7 @@
 // import Counter from "./counter";
 
 import { Component } from "react";
-import Counter from "./counter";
+import Counter from "../Counter/counter";
 interface countersProps {
     onRevert: Function,
     onReset: Function,

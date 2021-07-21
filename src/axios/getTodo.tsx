@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function Todo() {
+export default async function GetToDo() {
     const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
         params: {
             _page: 1,

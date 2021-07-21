@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react-hooks";
-import useClock from "../../hook/useClock";
+import useClock from "./useClock";
 
 describe("Testing use clock hook", () => {
     it("Should have value of date time now", () => {

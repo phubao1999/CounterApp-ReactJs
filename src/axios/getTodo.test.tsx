@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Todo from '../axios/todo';
+import GetToDo from './getTodo';
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
@@ -15,7 +15,7 @@ describe("Call API By Axios", () => {
                 }]
             }
         });
-        const todoList = await Todo();
+        const todoList = await GetToDo();
         todoList.forEach((todo: any) => {
             expect(todo.value).toContain("Learn ReactJs");
         });
