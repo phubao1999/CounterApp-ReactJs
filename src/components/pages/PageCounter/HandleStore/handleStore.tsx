@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { decrement, increment } from "../../actions";
+import { decrement, increment } from "../../../../actions";
 class HandleStore extends Component<any> {
     render() {
         return (
