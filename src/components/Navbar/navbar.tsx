@@ -8,7 +8,7 @@ class Navbar extends Component<any> {
         return (
             <ul className="navbar navbar-dark bg-dark custom-navbar">
                 <p className="nav-link active navbar-brand"><Link to="/">Counter</Link> <span className="badge badge-pill badge-primary">{this.props.navbarCounter}</span></p>
-                <p className="nav-link navbar-brand"><Link to="quiz">TODO</Link></p>
+                <p className="nav-link navbar-brand"><Link to="quiz">Quiz Demo</Link></p>
                 <p className="nav-link navbar-brand">TODAY</p>
             </ul>
         )

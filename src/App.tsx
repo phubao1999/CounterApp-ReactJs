@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/navbar";
 import pageCounter from "./components/pages/PageCounter/pageCounter";
 import PageNotFound from "./components/pages/PageNotFound/pageNotFound";
 import PageQuiz from "./components/pages/PageQuiz/pageQuiz";
+import "./App.scss"
 
 class App extends Component {
   render() {
