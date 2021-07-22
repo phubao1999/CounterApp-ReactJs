@@ -8,8 +8,10 @@ import QuizOverview from "./quizOverview/quizOverview";
 interface pageQuizState {
     totalQuestions: number,
     data: quizType[],
+    cloneData: quizType[],
     openOverview: boolean,
-    finalResult: string
+    finalResult: string,
+    resetQuiz: boolean
 }
 
 export default class PageQuiz extends Component<any, pageQuizState> {
@@ -18,8 +20,10 @@ export default class PageQuiz extends Component<any, pageQuizState> {
         this.state = {
             totalQuestions: quizMockingData.length,
             data: quizMockingData,
+            cloneData: quizMockingData,
             openOverview: false,
-            finalResult: ""
+            finalResult: "",
+            resetQuiz: false
         }
     }
 
@@ -55,12 +59,27 @@ export default class PageQuiz extends Component<any, pageQuizState> {
         });
     }
 
+    setResetQuiz = () => {
+        this.setState({
+            data: this.state.cloneData,
+            finalResult: "",
+            totalQuestions: quizMockingData.length,
+            openOverview: false,
+            resetQuiz: true
+        })
+        setTimeout(() => {
+            this.setState({
+                resetQuiz: false
+            })
+        })
+    }
+
     render() {
         return (
             <div className="main-quiz">
                 <h1 className="mb-2">Take a quiz baby</h1>
                 {this.state.data.map((item: quizType, index: number) =>
-                    <Quiz key={item.id} data={item} index={index} onHandleChangeAns={this.handleChangeQuiz} />
+                    <Quiz key={item.id} data={item} index={index} onHandleChangeAns={this.handleChangeQuiz} resetQuiz={this.state.resetQuiz} />
                 )}
                 <Button onClick={() => this.handleSubmitTest()} className="my-3" variant="contained" color="primary">
                     Submit Answers
@@ -70,6 +89,7 @@ export default class PageQuiz extends Component<any, pageQuizState> {
                     onHandleDialog={this.setHandleDialog}
                     openOverview={this.state.openOverview}
                     onHandleSubmit={this.setHandleSubmit}
+                    onResetQuiz={this.setResetQuiz}
                     finalResult={this.state.finalResult}
                 />
             </div>

@@ -11,6 +11,7 @@ interface typeProps {
     openOverview: boolean,
     onHandleDialog: Function,
     onHandleSubmit: Function,
+    onResetQuiz: Function,
     finalResult: string
 }
 
@@ -58,10 +59,10 @@ export default function QuizOverview(props: typeProps) {
         setIsSubmit(true);
     }
 
-    // useEffect(() => {
-    //     console.log('Destroy Dialog')
-    //     return;
-    // })
+    const onResetQuiz = () => {
+        setIsSubmit(false);
+        props.onResetQuiz({});
+    }
 
     return (
         <div>
@@ -86,12 +87,13 @@ export default function QuizOverview(props: typeProps) {
                     </DialogContent>
                 )}
                 <DialogActions>
-                    <Button variant="contained" color="secondary" onClick={() => handleDialog(false)}>
-                        Disagree
-                    </Button>
-                    <Button variant="contained" color="primary" onClick={() => onHandleSubmit()}>
-                        Confirm
-                    </Button>
+                    {!isSubmit ?
+                        <>
+                            <Button variant="contained" color="secondary" onClick={() => handleDialog(false)}>Disagree</Button>
+                            <Button variant="contained" color="primary" onClick={() => onHandleSubmit()}>Confirm</Button>
+                        </> :
+                        <Button variant="contained" color="primary" onClick={() => onResetQuiz()}>Reset Quiz</Button>
+                    }
                 </DialogActions>
             </Dialog>
         </div>
