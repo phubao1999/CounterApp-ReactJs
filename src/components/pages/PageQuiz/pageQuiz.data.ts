@@ -8,7 +8,8 @@ export interface quizType {
     id: string,
     question: string,
     value: string,
-    answers: quizAnsType[]
+    answers: quizAnsType[],
+    result: boolean
 }
 
 const quizMockingData: quizType[] = [
@@ -37,7 +38,8 @@ const quizMockingData: quizType[] = [
                 value: 'ans-4',
                 isCorrectAns: false
             }
-        ]
+        ],
+        result: false
     },
     {
         id: 'ask-2',
@@ -64,7 +66,8 @@ const quizMockingData: quizType[] = [
                 value: 'ans-4',
                 isCorrectAns: false
             }
-        ]
+        ],
+        result: false
     }
 ];
 

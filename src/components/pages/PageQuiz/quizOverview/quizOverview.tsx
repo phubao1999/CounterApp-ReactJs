@@ -2,15 +2,21 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import { quizAnsType, quizType } from "../pageQuiz.data";
 import "./quizOverview.scss"
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-
+import { useState } from "react";
+import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
+import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
+import { green } from "@material-ui/core/colors";
 interface typeProps {
     data: quizType[],
     openOverview: boolean,
-    onHandleDialog: Function
+    onHandleDialog: Function,
+    onHandleSubmit: Function,
+    finalResult: string
 }
 
 export default function QuizOverview(props: typeProps) {
     const options = ['A', 'B', 'C', 'D'];
+    const [isSubmit, setIsSubmit] = useState(false);
     const handleDialog = (openOverview: boolean) => {
         props.onHandleDialog({ openOverview })
     }
@@ -19,8 +25,7 @@ export default function QuizOverview(props: typeProps) {
         if (!quiz.value) {
             return (
                 <div className="d-flex">
-                    <ErrorOutlineIcon />
-                    <span className="ml-2">You haven't done this question</span>
+                    <ErrorOutlineIcon /> You haven't done this question
                 </div>
             )
         }
@@ -28,9 +33,35 @@ export default function QuizOverview(props: typeProps) {
         const objSelectedIndex = quiz.answers.findIndex((item: quizAnsType) => item.id === quiz.value);
 
         return (
-            <span>{`${options[objSelectedIndex]}. ${objSelected?.value}`}</span>
+            <div>{`${options[objSelectedIndex]}. ${objSelected?.value}`}</div>
         )
     }
+
+    const getIconFromResult = (quiz: quizType) => {
+        if (isSubmit) {
+            return quiz.result ? <DoneOutlinedIcon style={{ color: green[500] }} /> : <ClearOutlinedIcon color="secondary" />
+        }
+
+        return;
+    }
+
+    const onHandleSubmit = () => {
+        const updateResult = props.data.map((item: quizType) => {
+            const answersObj = item.answers.find((obj: quizAnsType) => item.value === obj.id);
+            if (answersObj) {
+                item.result = answersObj.isCorrectAns
+            }
+
+            return item;
+        })
+        props.onHandleSubmit({ updateResult });
+        setIsSubmit(true);
+    }
+
+    // useEffect(() => {
+    //     console.log('Destroy Dialog')
+    //     return;
+    // })
 
     return (
         <div>
@@ -40,13 +71,16 @@ export default function QuizOverview(props: typeProps) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">{"Preview Answer"}</DialogTitle>
+                <DialogTitle className="center-dialog-title" id="alert-dialog-title">
+                    {isSubmit ? "Your Result" : "Preview Answer"}
+                    <div>{props.finalResult}</div>
+                </DialogTitle>
                 {props.data.map((item: quizType) =>
                     <DialogContent key={item.id}>
                         <DialogContentText className="questions-title">
-                            {item.question}
+                            {item.question} {getIconFromResult(item)}
                         </DialogContentText>
-                        <DialogContentText className="ans-title">
+                        <DialogContentText className="ans-title" component="div">
                             {getValueOfAnswer(item)}
                         </DialogContentText>
                     </DialogContent>
@@ -55,10 +89,11 @@ export default function QuizOverview(props: typeProps) {
                     <Button variant="contained" color="secondary" onClick={() => handleDialog(false)}>
                         Disagree
                     </Button>
-                    <Button variant="contained" color="primary" onClick={() => handleDialog(true)}>
+                    <Button variant="contained" color="primary" onClick={() => onHandleSubmit()}>
                         Confirm
                     </Button>
                 </DialogActions>
             </Dialog>
-        </div>)
+        </div>
+    );
 }
