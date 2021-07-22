@@ -53,7 +53,7 @@ export default class PageQuiz extends Component<any, pageQuizState> {
                 <Button onClick={() => this.handleSubmitTest()} className="my-3" variant="contained" color="primary">
                     Submit Answers
                 </Button>
-                <QuizOverview onHandleDialog={this.setHandleDialog} openOverview={this.state.openOverview} />
+                <QuizOverview data={this.state.data} onHandleDialog={this.setHandleDialog} openOverview={this.state.openOverview} />
             </div>
         )
     }

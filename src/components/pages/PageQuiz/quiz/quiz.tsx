@@ -16,6 +16,7 @@ interface propsType {
 
 export default function Quiz(props: propsType) {
     const classes = useStyles();
+    const alphabetAns = ['A', 'B', 'C', 'D'];
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.onHandleChangeAns({
@@ -35,8 +36,8 @@ export default function Quiz(props: propsType) {
                             {props.data.question}
                             <FormControl component="fieldset">
                                 <RadioGroup aria-label="ans" onChange={handleChange}>
-                                    {props.data.answers.map((item: quizAnsType) =>
-                                        <FormControlLabel key={item.id} value={item.id} control={<Radio />} label={item.value} />
+                                    {props.data.answers.map((item: quizAnsType, index: number) =>
+                                        <FormControlLabel key={item.id} value={item.id} control={<Radio />} label={`${alphabetAns[index]}. ${item.value}`} />
                                     )}
                                 </RadioGroup>
                             </FormControl>
