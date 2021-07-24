@@ -44,8 +44,7 @@ export default class PageQuiz extends Component<any, pageQuizState> {
     handleSubmitTest = () => {
         const quizHaveAns = this.state.data.filter((quiz: quizType) => quiz.value !== '');
         if (quizHaveAns.length === 0) {
-            // Test Git in Master Branch
-            // Validate In Here
+            // TODO: Handle Validate
             return;
         }
         this.setState({
