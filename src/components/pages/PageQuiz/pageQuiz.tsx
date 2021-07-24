@@ -44,6 +44,7 @@ export default class PageQuiz extends Component<any, pageQuizState> {
     handleSubmitTest = () => {
         const quizHaveAns = this.state.data.filter((quiz: quizType) => quiz.value !== '');
         if (quizHaveAns.length === 0) {
+            // TODO: Update Popup show validate message in here
             // Validate In Here
             return;
         }
