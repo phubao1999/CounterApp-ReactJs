@@ -42,6 +42,11 @@ export default class PageQuiz extends Component<any, pageQuizState> {
     }
 
     handleSubmitTest = () => {
+        const quizHaveAns = this.state.data.filter((quiz: quizType) => quiz.value !== '');
+        if (quizHaveAns.length === 0) {
+            // Validate In Here
+            return;
+        }
         this.setState({
             openOverview: true
         })
