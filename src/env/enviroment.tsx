@@ -1,4 +1,5 @@
 export const environments = {
     production: false,
-    appConfig: {}
+    appConfig: {},
+    fakeAPI: 'https://jsonplaceholder.typicode.com/posts'
 }
