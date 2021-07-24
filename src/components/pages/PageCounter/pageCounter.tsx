@@ -2,6 +2,7 @@ import axios from "axios";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { updateNavbarCount } from "../../../actions";
+import { environments } from "../../../env/enviroment";
 import Counters from "./Counters/counters";
 import HandleStore from "./HandleStore/handleStore";
 
@@ -46,7 +47,7 @@ class PageCounter extends Component<counterProps, counterState> {
 
     componentDidMount() {
         this.updateStateNavbarCountProduct();
-        axios.get('https://jsonplaceholder.typicode.com/posts', {
+        axios.get(environments.fakeAPI, {
             params: {
                 _page: 1,
                 _limit: 10
