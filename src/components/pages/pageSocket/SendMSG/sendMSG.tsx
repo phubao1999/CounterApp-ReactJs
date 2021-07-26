@@ -16,7 +16,7 @@ export default function SendMSG() {
     const classes = useStyles();
 
     return (
-        <div className="send-box">
+        <div className="send-box m-4 custom-box-shadow">
             <form className={classes.root} noValidate autoComplete="off">
                 <TextField
                     required
