@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface propsType {
+    userId: string,
     emitSubmit: any
 }
 
@@ -24,6 +25,7 @@ export default function SendMSG(props: propsType) {
 
     const emitChatInfo = () => {
         props.emitSubmit({
+            userId: props.userId,
             name: name,
             message: message
         });

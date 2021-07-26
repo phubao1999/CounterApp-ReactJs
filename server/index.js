@@ -9,7 +9,7 @@ const io = require('socket.io')(server, {
 server.listen(8080);
 
 io.on('connection', socket => {
-    socket.on('message', ({ name, message }) => {
-        io.emit('message', { name, message })
+    socket.on('message', ({ name, message, userId }) => {
+        io.emit('message', { name, message, userId })
     })
 })
