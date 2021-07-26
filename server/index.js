@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+const cors = require('cors');
 const port = 8000
 
 app.get('/', (req, res) => {
@@ -13,6 +14,8 @@ io.on('connection', socket => {
         io.emit('message', (name, message));
     })
 });
+
+app.use(cors());
 
 
 app.listen(port, () => {
