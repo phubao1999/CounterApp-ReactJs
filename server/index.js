@@ -1,23 +1,15 @@
-const express = require('express');
-const app = express();
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
-const cors = require('cors');
-const port = 8000
+const app = require('express')();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: '*'
+    }
+});
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-})
+server.listen(8080);
 
 io.on('connection', socket => {
     socket.on('message', ({ name, message }) => {
-        io.emit('message', (name, message));
+        io.emit('message', { name, message })
     })
-});
-
-app.use(cors());
-
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
 })
