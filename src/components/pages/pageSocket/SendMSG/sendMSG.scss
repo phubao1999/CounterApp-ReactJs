@@ -1,0 +1,18 @@
+.send-box {
+    box-shadow: 5px 7px 30px 2px;
+    border-radius: 5px;
+    margin: 2rem;
+
+    form {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .submit-layout {
+        padding: 0 2rem 2rem 2rem;
+        display: flex;
+        align-items: self-end;
+        justify-content: flex-end;
+    }
+}
