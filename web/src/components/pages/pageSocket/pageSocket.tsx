@@ -19,21 +19,17 @@ export default function PageSocket() {
 
     useEffect(() => {
         socket.on('message', (data: chatInfo) => {
-            updateChatState(data);
+            setChat([...chat, {
+                userId: data.userId,
+                name: data.name,
+                message: data.message
+            }])
         })
     })
 
     const changeChat = (data: chatInfo) => {
         const { name, message, userId } = data;
         socket.emit("message", { name, message, userId })
-    }
-
-    const updateChatState = (obj: chatInfo) => {
-        setChat([...chat, {
-            userId: obj.userId,
-            name: obj.name,
-            message: obj.message
-        }])
     }
 
     return (
